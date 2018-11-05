@@ -62,7 +62,7 @@ The string variable *bodyShape* and integer variable *noOfStrings* are declared
 as protected, as they are required to be modifiable by any child of the abstract
 Guitar class.
 
-The two Guitar object constructors, virtual void *display()* method, and destructor
+The two "Guitar" object constructors, virtual void *display()* method, and destructor
 are declared as public, as these must be available to be called at any point in
 the codes main function. 
 
@@ -80,13 +80,13 @@ public:
 ```
 
 In this context, the overloading of constructors allow for the user to input a
-*serialNumber* for their ElectricGuitar object, or, if no value is entered,
-the Guitar class construct method will set the value using a static integer
+*serialNumber* for their "ElectricGuitar" object, or, if no value is entered,
+the "Guitar" class construct method will set the value using a static integer
 variable. 
 
 ## Abstract Classes
 
-The Guitar class is abstract within this project, containing
+The "Guitar" class is abstract within this project, containing
 a display method which must be over-ridden within its child classes. The class
 is made abstract using the following syntax on a method of the class:
 
@@ -182,7 +182,7 @@ ElectroAcousticGuitar::ElectroAcousticGuitar(string aManufacturer,
 Separate compilation is used with all classes of the project. Each class is
 defined within a header file, with their method implementations contained in
 the C++ file. The header files are then included within the main project
-file, "TestApp.cpp", using *#include"* statements.
+file, "TestApp.cpp", using *#include* statements.
 
 ```cpp
 #include "Instrument.h"
@@ -202,8 +202,8 @@ allows access to the *protected: float Price* variable, from outside of the
 class. In this application, it is used to modify the *price* variable, allowing
 a discount to be given to the instrument. The function is declared a friend within
 the "Instrument" class, and declared within the "TestApp.cpp" file. The
-*salePrice()* method takes a float, and an Instrument object, and subtracts
-the float value from the Instruments *price* value. 
+*salePrice()* method takes a float, and an "Instrument" object, and subtracts
+the float value from the "Instruments" *price* value. 
 
 ```cpp
 void salePrice(Instrument &saleInstrument, float discount){
@@ -270,7 +270,7 @@ void changePianoShapePBR(AcousticPiano &source, string newShape){
 ```
 
 Calling this function, followed by a display function gives the output seen
-in Figure \ref{copyPBR}, and demonstrates that the copy constructor is not used when pass-by-refernce
+in Figure \ref{copyPBR}, and demonstrates that the copy constructor is not used when pass-by-reference
 is used.
 
 \begin{figure}[H]
@@ -308,7 +308,9 @@ the "Piano" class.
 
 ```cpp
 Piano Piano::operator +(Piano inPiano) {
-	return Piano(inPiano.manufacturer+manufacturer, inPiano.price+price, noOfKeys+inPiano.noOfKeys);
+	return Piano(inPiano.manufacturer+manufacturer, 
+		inPiano.price+price, 
+		noOfKeys+inPiano.noOfKeys);
 }
 ```
 
@@ -319,8 +321,9 @@ the "Piano" class.
 
 ```cpp
 bool Piano::operator ==(Piano inPiano){
-	if((inPiano.serialNumber == serialNumber) && (inPiano.manufacturer == manufacturer)
-			&& (inPiano.price == price) && (inPiano.noOfKeys == noOfKeys)){
+	if((inPiano.serialNumber == serialNumber) 
+	&& (inPiano.manufacturer == manufacturer)
+	&& (inPiano.price == price) && (inPiano.noOfKeys == noOfKeys)){
 		return true;
 	}
 	else return false;
@@ -337,7 +340,7 @@ bool Piano::operator <(Piano inPiano){
 }
 ```
 
-The over-loaded operators were tested in by first "adding" two Piano objects,
+The over-loaded operators were tested in by first "adding" two "Piano" objects,
 and then, by equating two objects.
 
 ```cpp
@@ -357,7 +360,7 @@ else cout << "Non-matching Pianos" << endl;
 
 Pointers are used in the main function to demonstrate the use of operator
 over-loading of the "Piano" class. In this code snippet, a pointer to an array
-of Piano objects is initialized, and two objects are created using the Piano
+of "Piano" objects is initialized, and two objects are created using the "Piano"
 constructor. The operations performed are described in the "Operator Over-Loading"
 section above. 
 
@@ -436,7 +439,8 @@ dynamic binding may be used with this method. This is demonstrated with the
 
 The *displayGuitarInfo()* method takes an object of class "Guitar", or any of
 its derived classes, and executes its *display()* method. This is demonstrated
-within the project by passing in an object of type "AcousticGuitar".
+within the project by passing in an object of type "AcousticGuitar", which will
+display the information for the "AcousticGuitar" object.
 
 ```cpp
 void displayGuitarInfo(Guitar &A){
@@ -490,7 +494,7 @@ void Guitar::construct(){
 }
 ```
 
-## C++ Class vs. C++ Struct
+## C++ Class vs. C++ Structure
 
 C++ Structures are an extended form of C Structures, which allow for similar
 functionality as classes. Within C++ the main difference between a Class and
@@ -543,7 +547,7 @@ void showPianoShapeCPBR(const AcousticPiano &source){
 
 Calling this function, followed by a display function gives the output seen
 in Figure \ref{copyCPBR}. It can also be seen that the copy constructor is not 
-used when constant  pass-by-refernce is used.
+used when constant pass-by-reference is used.
 
 \begin{figure}[H]
 \includegraphics{Images/copyCPBR.png}
@@ -558,7 +562,7 @@ used when constant  pass-by-refernce is used.
 Class templates give a generic functionality, which may be applied to objects of
 different types. Objects of any type may be passed to a template class, which
 allows them to be used for storage purposes. Within this project, templates are
-demonstrated in two areas, however, only one is implamented as a class for storage
+demonstrated in two areas, however, only one is implemented as a class for storage
 purposes. The other is a functor, used in conjunction with vectors, and shall be
 explained in the "Vector" section. 
 
