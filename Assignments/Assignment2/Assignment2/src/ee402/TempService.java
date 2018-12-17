@@ -30,7 +30,6 @@ public class TempService implements Serializable{
 	private String temp, samplingFreq, ipAddr;
     private Calendar calendar;
     private int sampleNo;
-
 	
 	public TempService(String freq, int sampleNum, String zone){
 		StringBuffer stringBuffer = new StringBuffer();
@@ -57,9 +56,9 @@ public class TempService implements Serializable{
 		return this.temp;
 	}
 	
-	public String getDateAndTime()
+	public String getTime()
 	   {
-		 return this.calendar.getTime().toString();
+		return String.valueOf(System.currentTimeMillis()-this.calendar.getTimeInMillis());
 	   }
 	
 	public int getSampleNum() {
@@ -68,5 +67,10 @@ public class TempService implements Serializable{
 	
 	public String getIP() {
 		return this.ipAddr;
+	}
+	
+	public static void main(String args[]) {
+		TempService temp = new TempService("5", 0, "1");
+		System.out.println(temp.getTime());
 	}
 }

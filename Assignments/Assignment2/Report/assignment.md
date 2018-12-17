@@ -72,7 +72,99 @@ functionality required.
 
 ## Implementation
 
+The following section describes the java code implementation used for the
+completion of the assignment.
 
+### TempService
+
+The TempService class is based on the provided DateTimeService class. This class
+contains all of the required information for the trasmission of the systems
+temperature, IP address, and current system time data. The following variables
+are used to store this data.
+
+```java
+private String temp, samplingFreq, ipAddr;
+private Calendar calendar;
+private int sampleNo;
+```
+
+The temperature value is read from the system file, found on the Raspberry 
+Pi at "/sys/class/thermal/thermal_zone'x'/temp", where the 'x' value
+is passed in throught the object constructor to choose the thermal zone
+directory, allowing for different temperature readings to be sent to the server
+from different clients. A StringBuffer is used to read in this value, with the
+output assigned to the String "temp" variable.
+
+The time and date are set using the "Calendar.getInstance()" method, which
+returns an object of type Calendar. The IP Address of the system is obtained
+using the "InetAddress.getLocalHost().getHostAddress()" method, which returns
+the IP Address as a String. 
+
+There are a number of methods defined which act as getters for the parameters of
+the TempService objects.
+
+The "getTemp" method returns the String "temp" variable value.
+
+The "getTime" method returns the time value in milliseconds as a string by taking the String
+value of the Calendar objects time in milliseconds from the current system time
+in milliseconds. This allows for better ease of use when drawing lines on the
+ServerGui graph.
+
+The "getSampleNum" method returns the integer value of the sampleNo variable.
+
+The "getIP" method returns the String value of the ipAddr variable.
+
+In order to ensure that the objects of the TempService class may be transmit
+from the server to the client, the class must implement "Serializable".
+
+### Client
+
+The Client class is a modified version of the provided "Client.java" code. The
+main method of the Client class takes two command line arguements in. The first
+of these is the IP address of the server. The seceond acts as the index for the
+thermal zone, which is read from in the TempService class constructor. The
+constructor of the Client object calls the "connectToServer" method, passing the
+serverIP variable value as an arguement. This method creates a new client socket
+to the server at the passed in IP address, with port number 5050. The input and
+output stream objects are also created and associated with the client socket.
+
+A number of methods are used in order to transmit and receive objects from the
+server. 
+
+The "send" method utilises the ObjectOutputStream of the Client object, using
+the "writeObject" and "flush" methods to transmit the input object.
+
+The "receive" method utilises the ObjectInputStream of the Client object, using
+the "readObject" method to read in the object data sent from the server, and
+returns this object.
+
+The "sendError" method is called if an error occurrs in transmission of an
+object.
+
+Within the main method of the class, the initial "sampleNo" value is initialised
+as 0. An "if" statement checks if the correct number of command line arguements
+have been entered. If not, a warning message is output to the user on the
+command line, instructing them of the correct usage of the program. If the
+correct number of command line arguements are input, the Client object
+constructor is called, and a "while true" loop is entered. Within the loop, a
+TempService object is created, using the current sampling frequency value,
+current "sampleNo" value, and the second command line arguement as the inputs
+for the constructor. The sampleNo value is then incremented, and the TempService
+object is sent to the server. The selected sampling frequency is read in from
+the server, and the receivedFreq variable is assigned this value. If the
+received exitCommand value is "N" the thread then waits for the number of
+milliseconds given by the receivedFreq value times 1000, otherwise the Client
+code exits.
+
+### ThreadedConnectionHandler
+
+The ThreadedConnectionHandler class is a modified version of the provided
+"ThreadedConnectionHandler.java" code. This code is used to perform all
+necessary transmissions with the Client object. This allows the Server object to
+listen for more connecting Clients. The constructor of this class is called from
+the Server class, and is passed the socket information from the Client object.
+it then creates an ArrayList of type TempService, in which to hold all of the
+received TempService objects from the connected Client.
 
 # Results
 

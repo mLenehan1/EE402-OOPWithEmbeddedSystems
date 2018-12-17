@@ -12,19 +12,45 @@ import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.event.*;
 import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 
-public class ServerGui extends JFrame implements Runnable{
+public class ServerGui extends JFrame implements Runnable, ActionListener{
 
-	private volatile Status guiStatus =  1;
+	private volatile int status = 1;
 	private JFrame frame;
-	private JPanel graphPanel, selectPanel, mainPanel;
+	private JPanel selectPanel, mainPanel;
 	private JTextField textField;
-	private JCheckBox checkBox1, checkBox2;
+	private JCheckBox checkBox1, checkBox2, checkBox3, checkBox4, checkBox5;
+	private JButton stop;
+	private ArrayList<TempService> temps;
+	private GraphPanel graphPanel;
 	
 	//Class to Draw Graph Axis
-	public class PanelGraphic extends JComponent{
+	public class GraphPanel extends JComponent{
+		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private ArrayList<TempService> inTemps;
+		private Double x1, x2, y1, y2;
+		
+		GraphPanel(ArrayList<TempService> temps){
+			System.out.println("BP1");
+			if(temps.isEmpty()) {
+				this.inTemps = new ArrayList<TempService>();
+				System.out.println("Empty");
+			}
+			else {
+				this.inTemps = temps;
+				System.out.println("List Available");
+				System.out.println(this.inTemps);
+			}
+		}
 		
 		@Override
 		public void paintComponent(Graphics g) {
@@ -32,47 +58,80 @@ public class ServerGui extends JFrame implements Runnable{
 			Graphics2D g2 = (Graphics2D) g;
 			g2.draw(new Line2D.Double(50, 400, 50, 100));
 			g2.draw(new Line2D.Double(50,  400,  400,  400));
+			System.out.println(this.inTemps.size());
+			System.out.println("BP3");
+			if(temps.size()==1 || temps.isEmpty()) {System.out.println("BP4");}
+			else {
+				System.out.println("BP5");
+				for(int i = 0; i<temps.size()-1; i++) {
+					y1 = (double) Integer.parseInt(temps.get(i).getTemp());
+					y2 = (double) Integer.parseInt(temps.get(i+1).getTemp());
+					x1 = (double) Integer.parseInt(temps.get(i).getTime());
+					x2 = (double) Integer.parseInt(temps.get(i+1).getTime());
+					System.out.println("Time1 " + x1);
+					System.out.println("Time2 " + x2);
+					System.out.println("Temp1 " + y1);
+					System.out.println("Temp2 " + y2);
+					g2.draw(new Line2D.Double(x1/1000, y1/1000, x2/1000, y2/1000));
+				}
+			}
 		}
 	}
 	
+	public ServerGui() {
+		update(1, new ArrayList<TempService>(20));
+	}
+	
+	/*public static void main(String[] args) throws InterruptedException {
+		ServerGui test = new ServerGui();
+		Thread.sleep(10000);
+	}*/
 
 	@Override
 	public void run() {
+		switch(status) {
+		case 1:
+			this.mainPanel = new JPanel();
+			this.stop = new JButton("Test");
+			stop.addActionListener(this);
+			graphPanel = new GraphPanel(new ArrayList<TempService>());
+			mainPanel.setLayout(new BorderLayout());
+			mainPanel.add(graphPanel, BorderLayout.CENTER);
+			frame = new JFrame("Temperature App");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.add(mainPanel);
+			frame.pack();
+			frame.setLocationRelativeTo(null);
+			frame.setSize(450, 450);	
+			frame.setVisible(true);
+			break;
+		case 2:
+			System.out.println("Update");
+			System.out.println(this.temps);
+			graphPanel = new GraphPanel(this.temps);
+			mainPanel.add(graphPanel);
+			frame.repaint();
+			break;
+		}	
+	}
+	
+	public void update(int status, ArrayList<TempService> temps) {
+		setStatus(status, temps);
+		SwingUtilities.invokeLater(this);
+	}
+	
+	private synchronized void setStatus(int status, ArrayList<TempService> setTemps) {
+		this.status = status;
+		this.temps = setTemps;
+		//System.out.println(this.temps);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent a) {
+		if(a.getActionCommand().equals("Test")) {
+			stop.setText("Done");
+		}
 		// TODO Auto-generated method stub
 		
-	}
-	
-	public ServerGui() {
-		this.graphPanel = new JPanel(new BorderLayout());
-		this.selectPanel = new JPanel(new BorderLayout());
-		selectPanel.setSize(450, 20);
-		this.textField = new JTextField("Enter Sampling Rate");
-		this.checkBox1 = new JCheckBox("Test1");
-		this.checkBox2 = new JCheckBox("Test2");
-		selectPanel.add(textField, BorderLayout.NORTH);
-		selectPanel.add(checkBox1, BorderLayout.EAST);
-		selectPanel.add(checkBox2, BorderLayout.WEST);
-		graphPanel.add(new JLabel("Temperature Graph", SwingConstants.LEFT), BorderLayout.PAGE_START);
-		graphPanel.add(new PanelGraphic(), BorderLayout.CENTER);
-		this.mainPanel = new JPanel();
-		mainPanel.setLayout(new BorderLayout());
-		mainPanel.add(selectPanel, BorderLayout.SOUTH);
-		mainPanel.add(graphPanel);
-		JFrame frame = new JFrame("Temperature App");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(mainPanel);
-		frame.pack();
-		frame.setLocationRelativeTo(null);
-		frame.setSize(450, 450);	
-		frame.setVisible(true);
-	}
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-				new ServerGui();
-			}
-		});
 	}
 }

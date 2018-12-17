@@ -24,7 +24,7 @@ public class Client {
     private ObjectOutputStream os = null;
     private static ObjectInputStream is = null;
     private static TempService currentTemp;
-    private static String receivedFreq, theFreq = "5", exitCommand;
+    private static String receivedFreq = "5", exitCommand;
 
 	// the constructor expects the IP address of the server - the port is fixed
     public Client(String serverIP) {
@@ -51,21 +51,6 @@ public class Client {
         }
 		return true;
     }  
-    
-    private void getFreq() {
-    	String theFreqCommand = "GetFreq", theFreq;
-    	System.out.println("01. -> Sending Command (" + theFreqCommand + ") to the server...");
-    	this.send(theFreqCommand);
-    	try{
-    		theFreq = (String) receive();
-    		System.out.println("05. <- The Server responded with: ");
-    		System.out.println("    <- " + theFreq);
-    	}
-    	catch (Exception e){
-    		System.out.println("XX. There was an invalid object sent back from the server");
-    	}
-    	System.out.println("06. -- Disconnected from Server.");
-    }
 	
     // method to send a generic object.
     private void send(Object o) {
@@ -106,7 +91,7 @@ public class Client {
     	if(args.length==2){
     		Client theApp = new Client(args[0]);
     		while(true) {
-    			currentTemp = new TempService(theFreq, sampleNo, args[1]);
+    			currentTemp = new TempService(receivedFreq, sampleNo, args[1]);
     			sampleNo++;
     			theApp.send(currentTemp);
     			receivedFreq = (String) receive();
@@ -121,9 +106,9 @@ public class Client {
     	}
     	else
     	{
-    		System.out.println("Error: you must provide the address of the server");
-    		System.out.println("Usage is:  java Client x.x.x.x  (e.g. java Client 192.168.7.2)");
-    		System.out.println("      or:  java Client hostname (e.g. java Client localhost)");
+    		System.out.println("Error: you must provide the address of the server, and the required thermal zone value");
+    		System.out.println("Usage is:  java Client x.x.x.x  (e.g. java Client 192.168.7.2) x (e.g. 1)");
+    		System.out.println("      or:  java Client hostname (e.g. java Client localhost) x (e.g. 1)");
     	}    
     	System.out.println("**. End of Application.");
     }

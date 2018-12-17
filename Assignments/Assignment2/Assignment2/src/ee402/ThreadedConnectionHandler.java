@@ -15,11 +15,9 @@ package ee402;
 
 import java.net.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.io.*;
 
-public class ThreadedConnectionHandler extends Thread
-{
+public class ThreadedConnectionHandler extends Thread{
     private Socket clientSocket = null;				// Client socket object
     private ObjectInputStream is = null;			// Input stream
     private ObjectOutputStream os = null;			// Output stream
@@ -69,9 +67,10 @@ public class ThreadedConnectionHandler extends Thread
         	}
         	else {tempList.add(theTempService.getSampleNum(), theTempService);}
         	for(TempService temp:tempList) {
-        		System.out.print(temp.getIP() + ": SampleNum: " + temp.getSampleNum() + ", Temp: ");
-        		System.out.println(temp.getTemp().substring(0, 2)+"."+temp.getTemp().substring(2, 3));
+        	//	System.out.print(temp.getIP() + ": SampleNum: " + temp.getSampleNum() + ", Temp: ");
+        	//	System.out.println(temp.getTemp().substring(0, 2)+"."+temp.getTemp().substring(2, 3));
         	}
+        	updateGui(tempList);
         	this.send(samplingFreq);
         	this.send(exitCommand);
         }
@@ -79,6 +78,10 @@ public class ThreadedConnectionHandler extends Thread
             this.sendError("Invalid command: " + s); 
         }
         return true;
+    }
+    
+    private void updateGui(ArrayList<TempService> tempObj) {
+    	new ServerGui().update(2, tempObj);
     }
 
     // Send a generic object back to the client 

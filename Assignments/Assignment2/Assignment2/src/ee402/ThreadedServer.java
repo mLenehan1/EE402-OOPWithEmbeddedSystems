@@ -20,8 +20,6 @@ public class ThreadedServer {
 		new ServerGui();
 	}
 	
-	
-	
 	public static void main(String args[]) {
 		
 		new ThreadedServer();
