@@ -1,0 +1,295 @@
+New Server has started listening on port: 5050
+**. Listening for a connection...
+BP1
+Empty
+0
+BP3
+BP4
+0
+BP3
+BP4
+0
+BP3
+BP4
+0
+BP3
+BP4
+00. <- Accepted socket connection from a client: 
+    <- with address: /127.0.0.1
+        <- and port number: 44704
+	02. -- Finished communicating with client:/127.0.0.1
+	**. Listening for a connection...
+	01. <- Received a String object from the client (ee402.TempService@16664bc1).
+	0
+	0
+	02. -> Sending (5) to the client.
+	Update
+	[ee402.TempService@16664bc1]
+	BP1
+	List Available
+	[ee402.TempService@16664bc1]
+	Update
+	[ee402.TempService@16664bc1]
+	BP1
+	List Available
+	[ee402.TempService@16664bc1]
+	02. -> Sending (N) to the client.
+	Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException
+		at ee402.ServerGui.run(ServerGui.java:112)
+			at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:313)
+				at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:770)
+					at java.desktop/java.awt.EventQueue.access$600(EventQueue.java:97)
+						at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+							at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+								at java.base/java.security.AccessController.doPrivileged(Native Method)
+									at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+										at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:740)
+											at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+												at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+													at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+														at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+															at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+																at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+																Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException
+																	at ee402.ServerGui.run(ServerGui.java:112)
+																		at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:313)
+																			at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:770)
+																				at java.desktop/java.awt.EventQueue.access$600(EventQueue.java:97)
+																					at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+																						at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+																							at java.base/java.security.AccessController.doPrivileged(Native Method)
+																								at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+																									at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:740)
+																										at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+																											at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+																												at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+																													at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+																														at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+																															at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+																															01. <- Received a String object from the client (ee402.TempService@5f406f85).
+																															1
+																															1
+																															02. -> Sending (5) to the client.
+																															Update
+																															02. -> Sending (N) to the client.
+																															[ee402.TempService@16664bc1, ee402.TempService@5f406f85]
+																															BP1
+																															List Available
+																															[ee402.TempService@16664bc1, ee402.TempService@5f406f85]
+																															Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException
+																																at ee402.ServerGui.run(ServerGui.java:112)
+																																	at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:313)
+																																		at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:770)
+																																			at java.desktop/java.awt.EventQueue.access$600(EventQueue.java:97)
+																																				at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+																																					at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+																																						at java.base/java.security.AccessController.doPrivileged(Native Method)
+																																							at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+																																								at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:740)
+																																									at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+																																										at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+																																											at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+																																												at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+																																													at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+																																														at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+																																														Update
+																																														[ee402.TempService@16664bc1, ee402.TempService@5f406f85]
+																																														BP1
+																																														List Available
+																																														[ee402.TempService@16664bc1, ee402.TempService@5f406f85]
+																																														Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException
+																																															at ee402.ServerGui.run(ServerGui.java:112)
+																																																at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:313)
+																																																	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:770)
+																																																		at java.desktop/java.awt.EventQueue.access$600(EventQueue.java:97)
+																																																			at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+																																																				at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+																																																					at java.base/java.security.AccessController.doPrivileged(Native Method)
+																																																						at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+																																																							at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:740)
+																																																								at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+																																																									at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+																																																										at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+																																																											at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+																																																												at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+																																																													at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+																																																													01. <- Received a String object from the client (ee402.TempService@1edbdde4).
+																																																													2
+																																																													2
+																																																													02. -> Sending (5) to the client.
+																																																													Update
+																																																													[ee402.TempService@16664bc1, ee402.TempService@5f406f85, ee402.TempService@1edbdde4]
+																																																													BP1
+																																																													List Available
+																																																													[ee402.TempService@16664bc1, ee402.TempService@5f406f85, ee402.TempService@1edbdde4]
+																																																													02. -> Sending (N) to the client.
+																																																													Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException
+																																																														at ee402.ServerGui.run(ServerGui.java:112)
+																																																															at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:313)
+																																																																at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:770)
+																																																																	at java.desktop/java.awt.EventQueue.access$600(EventQueue.java:97)
+																																																																		at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+																																																																			at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+																																																																				at java.base/java.security.AccessController.doPrivileged(Native Method)
+																																																																					at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+																																																																						at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:740)
+																																																																							at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+																																																																								at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+																																																																									at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+																																																																										at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+																																																																											at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+																																																																												at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+																																																																												Update
+																																																																												[ee402.TempService@16664bc1, ee402.TempService@5f406f85, ee402.TempService@1edbdde4]
+																																																																												BP1
+																																																																												List Available
+																																																																												[ee402.TempService@16664bc1, ee402.TempService@5f406f85, ee402.TempService@1edbdde4]
+																																																																												Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException
+																																																																													at ee402.ServerGui.run(ServerGui.java:112)
+																																																																														at java.desktop/java.awt.event.InvocationEvent.dispatch(InvocationEvent.java:313)
+																																																																															at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:770)
+																																																																																at java.desktop/java.awt.EventQueue.access$600(EventQueue.java:97)
+																																																																																	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:721)
+																																																																																		at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:715)
+																																																																																			at java.base/java.security.AccessController.doPrivileged(Native Method)
+																																																																																				at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:87)
+																																																																																					at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:740)
+																																																																																						at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+																																																																																							at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+																																																																																								at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+																																																																																									at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+																																																																																										at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+																																																																																											at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+																																																																																											01. <- Received a String object from the client (ee402.TempService@34d86149).
+																																																																																											3
+																																																																																											3
+																																																																																											BP1
+																																																																																											Empty
+																																																																																											02. -> Sending (5) to the client.
+																																																																																											02. -> Sending (N) to the client.
+																																																																																											Update
+																																																																																											[ee402.TempService@16664bc1, ee402.TempService@5f406f85, ee402.TempService@1edbdde4, ee402.TempService@34d86149]
+																																																																																											BP1
+																																																																																											List Available
+																																																																																											[ee402.TempService@16664bc1, ee402.TempService@5f406f85, ee402.TempService@1edbdde4, ee402.TempService@34d86149]
+																																																																																											4
+																																																																																											BP3
+																																																																																											BP5
+																																																																																											Time1 26.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											0
+																																																																																											BP3
+																																																																																											BP5
+																																																																																											Time1 26.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											4
+																																																																																											BP3
+																																																																																											BP5
+																																																																																											Time1 26.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											0
+																																																																																											BP3
+																																																																																											BP5
+																																																																																											Time1 26.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											4
+																																																																																											BP3
+																																																																																											BP5
+																																																																																											Time1 26.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											0
+																																																																																											BP3
+																																																																																											BP5
+																																																																																											Time1 26.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											4
+																																																																																											BP3
+																																																																																											BP5
+																																																																																											Time1 26.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											0
+																																																																																											BP3
+																																																																																											BP5
+																																																																																											Time1 26.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+																																																																																											Time1 0.0
+																																																																																											Time2 0.0
+																																																																																											Temp1 29800.0
+																																																																																											Temp2 29800.0
+

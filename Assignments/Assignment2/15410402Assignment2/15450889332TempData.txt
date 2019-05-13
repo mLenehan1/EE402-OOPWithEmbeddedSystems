@@ -1,0 +1,6 @@
+null
+127.0.1.1: SampleNum: 0, Temp: 29.8
+127.0.1.1: SampleNum: 1, Temp: 29.8
+127.0.1.1: SampleNum: 2, Temp: 29.8
+127.0.1.1: SampleNum: 3, Temp: 29.8
+127.0.1.1: SampleNum: 4, Temp: 29.8

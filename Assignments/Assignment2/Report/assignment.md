@@ -150,7 +150,9 @@ constructor is called, and a "while true" loop is entered. Within the loop, a
 TempService object is created, using the current sampling frequency value,
 current "sampleNo" value, and the second command line arguement as the inputs
 for the constructor. The sampleNo value is then incremented, and the TempService
-object is sent to the server. The selected sampling frequency is read in from
+object is sent to the server. At this point the Raspberry Pi LED is toggled on
+and off again using the provided "BasicLEDExample" code  The selected sampling
+frequency is read in from
 the server, and the receivedFreq variable is assigned this value. If the
 received exitCommand value is "N" the thread then waits for the number of
 milliseconds given by the receivedFreq value times 1000, otherwise the Client
@@ -164,7 +166,86 @@ necessary transmissions with the Client object. This allows the Server object to
 listen for more connecting Clients. The constructor of this class is called from
 the Server class, and is passed the socket information from the Client object.
 it then creates an ArrayList of type TempService, in which to hold all of the
-received TempService objects from the connected Client.
+received TempService objects from the connected Client. The "run" method creates
+the ObjectInput/OutputStream objects, and places the ThreadedConnectionHandler
+in a loop, waiting to receive input from the Client.
+
+The "readInput" method reads the input object from the Client using the
+"readObject" method. The type of this value is then checked, and if it is a
+TempService object, a new TempService object is created to store the received
+data. An "if" statement checks the size of the Handlers ArrayList, and if it is
+greater than 20 (the maximum number of values to be stored), the first value of
+the ArrayList (at index 0) is removed, and the new TempService object is added
+to the end of the ArrayList. If the size of the ArrayList is less than 20, the
+TempService object is added to the end of the ArrayList. At this point a number
+of other methods are called.
+
+The "updateGui" method takes the ArrayList as an input, passing it to the
+"update" method of the ServerGui class. The integer value of 2 is also passed,
+and works as a select in the "update" methods switch statement. 
+
+The "writeToFile" method is used to output the stored TempService objects in a
+file, within the users home directory (as the code was developed on Ubuntu this
+is required to allow for use on the Windows platform). This method utilises the
+"for each" loop to iterate through the ArrayList, appending the contents of the
+object to the string to be written to the file.
+
+The "send" method works in the same way as the Client classes send method,
+utilising the ObjectOutputStream of the ThreadedConnectionHandler to write
+objects to the Client.
+
+A "sendError" method is used in order to notify the Client of an error in
+transmission.
+
+The "setFreq" method is used to set the sampling frequency to be sent to the
+Client object.
+
+Finally, the "closeSocket" methhod is used in order to end the socket
+connection between the ThreadedConnectionHandler and the Client objects.
+
+### ThreadedServer
+
+The ThreadedServer class is a modified version of the provided
+"ThreadedServer.java" code. Initially within the main method, the ThreadedServer
+constructor is called. This consrtuctor creates a new SererGui object. The
+boolean "listening" variable value is set to true, and the ServerSocket object
+is set to null. The server socket is then set to the portNumber value of 5050,
+and, if unsuccessful, will throw an error, exiting the program. If successful, a
+while loop is entered, which loops while the "listening" variable value is set
+true. The "clientSocket" value is set when the server accespts a connection from
+the client. The threaded handler object is then created, with the "clientSocket"
+passed as the arguement for the constructor. The "run" method of the
+ThreadedConnectionHandler is then executed using the "start" method, allowing
+the Server object to continue listening for Client object connections.
+
+### ServerGui
+
+The ServerGui code controls the creation and setup of the applications user
+interface. A number of components are utilised to create this interface. The
+constructor of this class calls the "update" method, with a status value of "1"
+passed in, and an empty ArrayList of type TempService. Within the "run" method
+of this class, a switch statement is used to choose whether the gui is being
+initialised or updated. Case 1 of the switch statement creates a number of the
+required components, including the initial GraphPanel object, which is defined
+within the ServerGui class. The "mainPanel" JPanel object, "graphPanel"
+GraphPanel object, and "textField" JTextField objects are added to the frame.
+Case 2 updates the GraphPanel object with the new ArrayList of TempService
+values, adding it to the mainPanel, and repainting the frame. 
+
+The GraphPanel class is defined internally in the ServerGui class, extending
+JComponent. It draws the graph axis if there is an empty or 1 element ArrayList
+available. If there are more values available, it creates a Line2D object, which
+is drawn between the points given by the temperature and time values of the
+TempService objects in the ArrayList.
+
+The "update" method is used in order to update the graph displayed by the gui. 
+The "setStatus" method is called, with the input status and ArrayList being
+passed as arguements.
+
+The "SwingUtilities.involeLater" method is then called,
+which will call the "run" method of the ServerGui when the thread is free to do
+so. The "setStatus" method is a synchronised method, available from all threads,
+which updates the "status" and "temps" values of the ServerGui object.
 
 # Results
 
@@ -211,4 +292,36 @@ Figure \ref{fig:clitest2arg}.
 \label{fig:clitest2arg}
 \end{figure}
 
+## Graphical User Interface
+
+Unfortunately the Server Gui class is not functional as intended. A
+NullPointerException is thrown when the ArrayList is passed to the GraphPanels
+"paintComponent" method, however, at certain times, it updates with incorrectly
+read values, drawing a line to the graph, and then proceeds to throw
+NullPointerExceptions. This may be due to a misunderstaning in the functionality
+of the "paintComponent" method, or the incorrect initialisation of the ServerGui
+from within the ThreadedServer class, instead of using the "start" method. As
+such, the gui is essentially non-functional and has been commented out for the
+testing of this code.
+
+The inconsistent output from running the ServerGui code may be seen in the
+attached log file.
+
+## File Writer
+
+On returning to the command line application, the additional functionality is a
+file writer, which places the required output data in a text file. This gives an
+opportunity to view the output from the application in a readable form, without
+a functioning gui. It also allows for a saved output to be viewed at a later
+stage if necessary, e.g. for system monitoring purposes.
+
 # Conclusion
+
+Unfortunately due to issues in understanding the GUI elements of this
+assignment, many of the points could not be completed correctly, the graph is
+not displayed to the user, and as such the application works on the command line
+only.
+
+As a command line application, the values are transmit and stored correctly. The
+additional functionality of saving the temperature values works as intended, and
+the light on the Raspberry Pi flashes as intended. 
